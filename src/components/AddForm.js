@@ -18,18 +18,34 @@ const AddForm = (props) => {
         });
     }
 
+    const clearForm = () => {
+        setState({
+            name: '',
+            position: '',
+            nickname: '',
+            description: ''
+        })
+    }
+
     const handleSubmit = e => {
         e.preventDefault();
         if (state.name === "" || state.position === "" || state.nickname === "") {
             setError("Name, position and nickname fields are required.");
         } else {
-            console.log('attempting to add smurf to database')
-            addSmurf(state.name, state.position, state.nickname, state.description);
+            console.log('attempting to add smurf to database',)
+            props.addSmurf({
+                name: state.name,
+                position: state.position,
+                nickname: state.nickname,
+                description: state.description,
+                id: Math.random()
+            });
+            clearForm();
 
         }
     }
 
-    //let errorMessage = "";
+    const errorMessage = props.errorMessage;
 
     return (<section>
         <h2>Add Smurf</h2>
@@ -50,16 +66,14 @@ const AddForm = (props) => {
                 <label htmlFor="description">Description:</label><br />
                 <textarea onChange={handleChange} value={state.description} name="description" id="description" />
             </div>
-            {
-                props.error && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {props.error}</div>
-            }
+            {props.errorMessage && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {props.errorMessage}</div>}
             <button>Submit Smurf</button>
         </form>
     </section>);
 }
 const mapStateToProps = state => {
     return {
-        error: state.error,
+        errorMessage: state.errorMessage,
     }
 }
 export default connect(mapStateToProps, { setError, addSmurf })(AddForm);

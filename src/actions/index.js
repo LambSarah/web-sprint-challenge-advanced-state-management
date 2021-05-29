@@ -26,9 +26,9 @@ export const addSmurf = newSmurf => {
     return { type: ADD_SMURF, payload: newSmurf }
 }
 
-export const setError = err => {
-    console.log('========== set error called: ', err)
-    return { type: SET_ERROR, payload: err }
+export const setError = errorMessage => {
+    console.log('========== set error called: ', errorMessage)
+    return { type: SET_ERROR, payload: errorMessage }
 }
 
 //Task List:

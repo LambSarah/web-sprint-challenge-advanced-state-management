@@ -3,8 +3,8 @@ import { START_SMURF_FETCH, FETCH_SUCCESS, FETCH_ERROR, ADD_SMURF, SET_ERROR } f
 export const initialState = {
     smurfs: [],
     isLoading: false,
-    error: '',
-    idCounter: 3
+    errorMessage: '',
+
 }
 
 const reducer = (state = initialState, action) => {
@@ -35,7 +35,7 @@ const reducer = (state = initialState, action) => {
         case SET_ERROR:
             return {
                 ...state,
-                error: action.payload
+                errorMessage: action.payload
             }
         default:
             return state;
