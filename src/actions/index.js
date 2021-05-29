@@ -4,7 +4,7 @@ export const START_SMURF_FETCH = 'FETCH_SMURFS'
 export const FETCH_SUCCESS = 'FETCH_SUCCESS'
 export const FETCH_ERROR = 'FETCH_ERROR'
 export const ADD_SMURF = 'ADD_SMURF'
-export const CREATE_ERROR_MESSAGE = 'CREATE_ERROR_MESSAGE'
+export const SET_ERROR = 'SET_ERROR'
 
 
 export const fetchSmurfs = () => dispatch => {
@@ -26,8 +26,9 @@ export const addSmurf = newSmurf => {
     return { type: ADD_SMURF, payload: newSmurf }
 }
 
-export const createErrorMessage = msg => {
-    return { type: CREATE_ERROR_MESSAGE, payload: msg }
+export const setError = err => {
+    console.log('========== set error called: ', err)
+    return { type: SET_ERROR, payload: err }
 }
 
 //Task List:
