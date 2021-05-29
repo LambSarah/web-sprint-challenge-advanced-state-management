@@ -13,19 +13,19 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: true,
-                error: '',
+                errorMessage: '',
             }
         case FETCH_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
                 smurfs: action.payload,
-                error: ''
+                errorMessage: ''
             }
         case FETCH_ERROR:
             return {
                 ...state,
-                error: action.payload
+                errorMessage: action.payload
             }
         case ADD_SMURF:
             return {

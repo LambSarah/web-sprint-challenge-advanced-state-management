@@ -30,7 +30,7 @@ const AddForm = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
         if (state.name === "" || state.position === "" || state.nickname === "") {
-            setError("Name, position and nickname fields are required.");
+            props.setError("Name, position and nickname fields are required.");
         } else {
             console.log('attempting to add smurf to database',)
             props.addSmurf({
@@ -45,7 +45,7 @@ const AddForm = (props) => {
         }
     }
 
-    const errorMessage = props.errorMessage;
+    //const errorMessage = props.errorMessage;
 
     return (<section>
         <h2>Add Smurf</h2>
@@ -66,7 +66,8 @@ const AddForm = (props) => {
                 <label htmlFor="description">Description:</label><br />
                 <textarea onChange={handleChange} value={state.description} name="description" id="description" />
             </div>
-            {props.errorMessage && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {props.errorMessage}</div>}
+            {props.errorMessage ? <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {props.errorMessage}</div> :
+                ""}
             <button>Submit Smurf</button>
         </form>
     </section>);
